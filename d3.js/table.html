@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Employee data</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+        <style>
+            #table{
+               
+                height:auto;
+                width:90%;
+                margin-top:40px;
+                margin-left:5%;
+                margin-right:5%;
+                box-shadow: 1px 1px 4px rgb(187, 186, 186);
+                border-radius: 3px;
+            }
+            tr,th,td{
+                padding:10px;
+               
+            }
+            th{
+                color:rgb(241, 90, 90);
+            }
+            td{
+                text-align: center;
+            }
+            button{
+                border:none;
+                background-color:skyblue;
+                border-radius: 5px;
+                height:40px;
+                width:80px;
+                margin-left:60px;
+                box-shadow: 1px 1px 4px rgb(187, 186, 186);
+            }
+            .remove{
+                background-color: rgb(241, 90, 90);
+                margin-left: 20px;
+            }
+           #form{
+               margin-left: 5%;
+           }
+            input{
+
+                border:1px solid rgb(187, 186, 186);
+                height:30px;
+                border-radius: 3px;
+                background-color: transparent;
+                padding:5px;
+                margin-top:10px;
+            }
+            .ttl{
+                margin:5%;
+                font-weight: bolder;
+                font-size:larger;
+                letter-spacing: 0.1em;
+            }
+            #total{
+                color: rgb(241, 90, 90);
+            }
+
+           
+           
+        </style>
+    </head>
+    <body>
+        <div>
+            <form id="form">
+                <input type="text" id="fid" placeholder="Enter id">
+                <input type="text" id="fname" placeholder="Enter name">
+                <input type="text" id="fdept" placeholder="Enter Department">
+                <input type="email" required="" id="fmail" placeholder="Enter Email">
+                <input type="text" id="fsal" placeholder="Enter Salary">
+                <button type="button" class="add" onclick="addData()">ADD</button>
+                <button type="button" class="remove" onclick="deleteData()">REMOVE</button>
+            </form>
+        </div>
+        <table id="table">
+        <tr>
+            <th></th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Email</th>
+            <th>Salary</th>
+        </tr>
+      
+        </table>
+        <div class="ttl">
+            <div>Total Employees  :  <span id="total"></span></div>
+        </div>
+        <script type="text/javascript">
+
+        const table = document.querySelector('table');
+        const form = document.querySelector('form');
+        const id = document.getElementById('fid');
+        const name = document.getElementById('fname');
+        const dept = document.getElementById('fdept');
+        const email = document.getElementById('fmail');
+        const sal = document.getElementById('fsal');
+        var x = document.getElementById('total');
+
+       
+        let arr = localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : [];
+        x.innerHTML = arr.length;
+        //console.log(n);
+
+        function add(t1,t2,t3,t4,t5,t6){
+        
+      
+        const tr = document.createElement('tr');
+        const td1 = document.createElement('td');
+        const td2 = document.createElement('td');
+        const td3 = document.createElement('td');
+        const td4 = document.createElement('td');
+        const td5 = document.createElement('td');
+        const tdd = document.createElement('td');
+        const ch = document.createElement('input');
+        ch.type = "checkbox";
+       
+       
+        td1.textContent = t1;
+        td2.textContent = t2;
+        td3.textContent = t3;
+        td4.textContent = t4;
+        td5.textContent = t5;
+       
+
+        table.appendChild(tr);
+        tr.appendChild(tdd).appendChild(ch);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+        
+        }
+
+        function addData(){
+            //console.log(id.value);
+           // let n = table.rows.length;
+           //let arr = localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : [];
+           //let n = arr.length;
+            var myObj = {
+            id: id.value,
+            name: name.value,
+            department : dept.value,
+            email: email.value,
+            salary: sal.value
+        };
+       
+            arr.push(myObj);
+            localStorage.setItem("data",JSON.stringify(arr));
+            add(id.value,name.value,dept.value,email.value,sal.value);
+            document.getElementById('form').reset();
+            x.innerHTML = arr.length;
+        }
+
+       
+       
+       function deleteData(){
+          
+          try {
+			//var table = document.getElementById('table');
+			var rowCount = table.rows.length;
+            const item = JSON.parse(localStorage.getItem('data'));
+           // console.log(item[2 - 1].id);
+           var index;
+           
+			for(var i=0; i<rowCount; i++) {
+				var row = table.rows[i];
+				var chkbox = row.cells[0].childNodes[0];
+				if(null != chkbox && true == chkbox.checked) {
+                   let ids = row.cells[1].childNodes[0];
+                   console.log(typeof(ids));
+                    ids = Number(ids);
+                   
+                    //if(ids == item[i - 1].id){
+                    //console.log(item[i - 1].id);
+                    index = i - 1;
+                    item.splice(index, 1);
+                    table.deleteRow(i);
+                    localStorage.setItem('data', JSON.stringify(item));
+					rowCount--;
+					i--;
+                    x.innerHTML = item.length;
+                   //}
+				}
+
+
+			}
+			}catch(e) {
+				alert(e);
+			}
+       }
+
+       arr.forEach(element => {
+            add(element.id,element.name,element.department,element.email,element.salary);
+        });
+
+
+        </script>
+    </body>
+</html>

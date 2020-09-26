@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='https://fonts.googleapis.com/css?family=Berkshire Swash' rel='stylesheet'>
+
+  <title>New Tab App</title>
+ <style>
+   #date{
+    position: absolute;
+width: 233px;
+height: 44px;
+left: 80px;
+top: 250px;
+
+font-family: Berkshire Swash;
+font-style: normal;
+font-weight: normal;
+font-size: 40px;
+line-height: 50px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: rgba(0, 0, 0, 0.64);
+
+   }
+ </style>
+</head>
+
+<body background="./Group 1.png" height="640" width="340">
+
+  <h1 style="position:absolute;color:#01ADAD;font-size:50px;font-family:Berkshire Swash;text-align: center;top:184px;left:33px;">Save the date</h1>
+  <p id="date">20.11.2020</p>
+  
+
+  <script type="text/javascript">
+  //https://www.tcs.com/careers?country=IN&lang=EN //tcs
+  //...........................................................................................................
+  
+  /*var arr = [0];
+  var arr1 = [0];
+  if(arr == arr1){
+    console.log("same");
+  }
+  else{
+    console.log("diff");
+  }
+  if(arr === arr1){
+    console.log("Same");
+  }
+  else{
+    console.log("Diff");
+  }*/
+/*let a = 1;
+let b = a;
+let aa = {};
+let bb = {};
+console.log(aa == bb);
+console.log(aa === bb);*/
+
+//...............................P R O T O T Y P A L   I N H E R I T A N C E...............................
+  
+/*  let animal = {
+  eats: true
+};
+
+let bird = {
+  fly : false,
+  __proto__ : animal
+}
+
+function Rabbit(name) {
+  this.name = name;
+};
+
+console.log(Object.keys(bird)); // fly
+console.log(Object.keys(animal)); // eats
+for(let prop in bird){ console.log(prop)} //fly and eats
+for(let prop in bird){console.log(bird.hasOwnProperty(prop),prop);} // fly:true and eats:false*/
+
+/*Rabbit.prototype = animal;
+
+let rabbit = new Rabbit("White Rabbit"); //  rabbit.__proto__ == animal
+
+console.log(rabbit.eats ); // true
+
+Rabbit.prototype = bird;
+
+let rabit = new Rabbit("other Rabbit");  //rabit.__proto__ == bird
+console.log(rabit.fly);  // false
+console.log(rabit.eats); //undefined
+
+let rabit1 = new Rabbit("2nd Rabbit");
+console.log(rabit1.fly);
+console.log(rabit1.eats); //undefined*/
+
+//...........................................................................................................
+
+/*let A = {
+   greet : "Hello"
+};
+
+let B = {
+  //greet : "Hii",
+   __proto__ : A
+};
+
+let C = {
+   __proto__ : B
+};
+
+console.log(C.greet); // Hello
+console.log(C.greet = "hola"); // hola
+console.log(A.greet = "hey"); // hey
+console.log(B.greet); // hey
+console.log(C.greet); // hola*/
+
+//..........................................C A L C U L A T O R........................................................
+/*let calculator = {
+  read(){
+    this.a = +prompt("enter first value",0);
+    this.b = +prompt("enter second value",0);
+  },
+  sum(){
+    return this.a + this.b;
+    //alert(c);
+  },
+  mul(){
+    return this.a * this.b;
+    //alert(m);
+  }
+
+};
+
+calculator.read();
+alert(`addition is = ${calculator.sum()}`);
+alert(`multiplication is = ${calculator.mul()}`);*/
+
+//.......................................Chaining the methods........................................................
+
+/*let ladder = {
+  step : 0,
+  up(){
+    this.step++;
+    return this;
+  },
+  down(){
+    this.step--;
+    return this;
+  },
+  showStep(){
+    alert(this.step);
+  }
+};
+
+ladder.up().up().up().down().showStep();*/
+
+//...................................CONSTUCTOR.........................................................
+
+/*function User(name){
+  this.name = name;
+
+  this.greet = function() {
+      alert("My name is " +this.name)
+  };
+}
+let a = prompt("enter name","shruti");
+let user = new User(a);
+user.greet();*/
+
+/*function Accumulator(startValue){
+  this.v = startValue;
+  this.read = function(){
+    this.v += +prompt("enter value ",0);
+  };
+  
+}
+
+let acc = new Accumulator(1);
+acc.read(); //1
+acc.read(); //2
+alert(acc.v); //4*/
+
+//.................................S Y M B O L S............................................................
+"use strict";
+
+/*let student = { name: "Lilly" };
+// Instead of doing user.id = "ID";,
+// the libraries can do the following
+let id_libA = Symbol("id");              // local symbol
+student[id_libA] = "ID assigned by library A";
+let id_libB = Symbol("id");
+student[id_libB] = "ID assigned by library B";
+console.log(student);*/
+
+/*let a = Symbol.for("is"); // global symbol
+
+let object = {
+[a]: function () {
+let value = +prompt("type number less than 5", "3");
+if (value < 5) {
+return confirm(`number is ${value} and , you done :)`);
+} else {
+return confirm("is big than 5");
+}
+},
+};
+
+//other Script in our application
+let b = Symbol.for("is");
+
+let object_2 = {
+test_Sym() {
+return object[b]();
+},
+};
+alert(b == a);*/
+
+//.......................................ARRAY METHODS.....................................................
+/*function camelize(str){
+  return str.split("-").map(
+    (word,index) => index == 0 ? word : word[0].toUpperCase() + word.slice(1) 
+  ).join('');
+}
+
+let a = camelize('back-color');
+console.log(a);
+
+function filterRange(arr,a,b){
+  //return arr.filter(item => (item>=a && item<=b));  // filter() method finds multiple elements and 
+                                                    // find() method finds single ele.
+  for(let i=0;i<arr.length;i++){
+    let val = arr[i];
+
+    if(val<a || val>b){
+      arr.splice(i,1);
+      i--;
+    }
+  }
+
+ }
+
+let arr = [5, 3, 8, 1];
+
+let filtered = filterRange(arr, 1, 4);     
+
+alert( filtered ); // 3,1 (matching values)
+
+alert( arr ); // 5,3,8,1 (not modified)
+arr.sort((a,b) => b - a);        // sort in reverse order
+alert(arr);
+
+let a1 = ['HTML','CSS','JAVASCRIPT'];
+function sortedcopy(a1){
+  //let a2 = a1;
+  return a1.slice().sort()       // sort and display
+  
+}
+alert(sortedcopy(a1)); // sorted
+alert(a1);  // original*/
+
+//.....................................................................................................
+/*function Calculator(){
+  this.methods = {
+    "-":(a,b) => a - b,
+    "+":(a,b) => a + b,
+  };
+
+  this.calculate = function(str){
+    let split = str.split(' '),
+
+    a = +split[0],
+    op = split[1],
+    b = +split[2];
+
+    if(!this.methods[op] || isNaN(a) || isNaN(b)){
+      return NaN;
+    }
+
+    return this.methods[op](a,b);
+  }
+
+  this.addMethods = function(name,func){
+    this.methods[name] = func;
+  }
+}
+
+let cal = new Calculator;
+cal.addMethods("*",(a,b) => a * b);
+alert(cal.calculate("1 * 2"));*/
+let arr=[
+{
+name:"shruti",
+id:"1"
+},
+{
+name:"aditya",
+id:"2"
+},
+{
+name:"praju",
+id:"3"
+}
+]
+let a = arr.filter(item => (item.name=="shruti"))
+console.log(a)
+/*arr.sort(function(a,b){
+if(a.name < b.name)
+	return -1
+if(a.name > b.name)
+	return 1
+return 0
+})
+console.log(arr)*/
+//..........................CLOSURES...........................................................
+
+/*let outer = function(passed,l=0){
+  let inner = function(inn){
+    console.dir(passed);
+    console.dir(inn);
+    console.dir(l);
+    return passed + inn;
+    
+  };
+  return inner;
+};
+let a = new outer(2,1);
+console.dir(a(3));
+//console.dir(outer(5));
+//console.dir(outer(4));*/
+
+//........................CALLBACK...................................................................
+//used to execute one function after another but 
+//for complex code it become hard to read,debug and break the code
+//used to execute async task
+
+/*let myFun = function (callback){
+  setTimeout(() => {
+    let arr = [1,2,3,4,5];
+    callback(arr);
+  },2000);
+};
+
+function callback(arr){
+  console.log(arr);
+}
+
+myFun(callback);  */
+//callback([1,2]); it display first
+
+//........................................PROMISE......................................................
+//promise is a object used to execute async task and it handles complex task also which callback does not handle.
+//it keeps tracking the task. initial state = pending and value = undefined.
+//resovle() method is called on succesfull task complition. state = fullfilled and value = result.
+//reject() method is called on error. state = rejected and value = error.
+//only one resolve/reject is executed in each promise.
+//producer code(executor) - it executes task and return whether completed or not.
+//when resolve() or reject() promise is settled, initially pending.
+//consumer code - after complition of code what to do with result is executed in this.
+//.then() - resolve()
+//.catch() - reject()
+//.finally() - executes when either resolve() or reject().
+
+/*let promise = new Promise((resolve,reject) => {   // Producer code
+      setTimeout(() => {
+        let arr = [1,2,3,4,5];
+        resolve(arr);
+        //reject('Error Caught');
+      },2000);
+});
+
+function getData(id){
+  return new Promise((resolve,reject) => {
+    setTimeout((id) =>{
+      let data = {
+        name : "Shruti",
+        age : 21,
+        id : 2
+      };
+      if(id == data.id){
+      resolve(data);
+      }
+      else{
+        reject(new Error('no data matched'));
+      }
+    },2000,id)
+  });
+}*/
+/*promise.then((result) =>{               // Consumer code
+  console.log(result);
+  getData(result[0]).then((data) => {
+    console.log(`${data.name} and ${data.age} and ${data.id}`);
+  }).catch((error) => {
+    console.log(error);
+  })
+}).catch((error) => {
+  console.log(error);
+})*/
+
+//..........async/await is simple to use than .then 
+//....async returns promise and await tells to wait while task running.
+/*async function getAll(){  
+
+  try{
+  let ids = await promise;
+  console.log(ids);
+
+  let bio = await getData(ids[1]);  // change ids[1] to ids[2] to display error when data is not found
+  console.log(`${bio.name} and ${bio.age} and ${bio.id}`);
+
+  return bio.name;
+  }catch(error){
+    console.log(error);
+    return error;
+  }
+}
+
+//let res = getAll();
+//console.log(res); // it displays promise as pending 
+
+getAll().then((name) =>{  //when we return any data from async function then we can display by using .then
+  console.log(name);
+}).catch((error) => {console.log(error);});*/
+
+/*fetch('https://javascript.info/') 
+  .then(response => alert(response))
+  .catch(err => alert(err)) // TypeError: failed to fetch (the text may vary)*/
+
+/*new Promise(function(resolve, reject) { 
+  setTimeout(() => {
+    throw new Error("Whoops!");
+  }, 1000);
+}).catch(alert);      // error is unhandled because it occurs at the time of executaion not after it done
+                      // if we use reject() instead of throw then error is handled correctly.*/
+
+</script>
+</body>
+
+</html>

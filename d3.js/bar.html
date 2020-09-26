@@ -1,0 +1,163 @@
+<html>
+   <head>
+      <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+      <style>
+       svg rect{
+            fill: steelblue;
+         }
+         
+         svg text {
+            font: 16px sans-serif;
+            text-anchor: end;
+         }
+         h1{
+            color:brown;
+         }
+         
+       
+      </style>
+   </head>
+
+   <body>
+    
+    
+      <script>
+      /*  var data = [10, 5, 12, 15, 20, 30];
+         //var max = Math.max(...data);
+         var max=data.reduce(function(a,b){return Math.max(a,b);});
+         console.log(max);
+         l=data.length;
+         var scaleFactor = 20,
+             width = max * 20,
+            barHeight = 20;
+            height = 60 * l;
+
+            var graph = d3.select("body")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height).style("border","none");
+         
+         var xScale = d3.scaleLinear()
+            .domain([0,d3.max(data)])
+            .range([0,width - 100]);
+
+         var yScale = d3.scaleLinear()
+            .domain([0,d3.max(data)])
+            .range([height/2,0]);
+
+         var x_axis = d3.axisBottom()
+                        .scale(xScale);
+
+         var y_axis = d3.axisLeft()
+                        .scale(yScale);
+
+         var xAxisTrans = height/2 + 10;
+         
+         graph.append("g")
+       .attr("transform", "translate(50, 10)")
+       .call(y_axis);
+
+       graph.append("g")
+       .attr("transform", "translate(50, " + xAxisTrans  +")")
+       .call(x_axis);
+
+
+         var bar = graph.selectAll("g")
+            .data(data)
+            .enter()
+            .append("g")
+            .attr("transform", function(d, i) {
+               // console.log(i);
+                //console.log(d);
+               return "translate(0," + i * barHeight + ")";
+            });
+
+
+           
+         bar.append("rect")
+         .attr("width", function(d) {
+             console.log(d * scaleFactor);
+            return d * scaleFactor;
+         })
+         .attr("height", barHeight - 1)
+         .on("mouseover",function(d)
+            {
+               d3.select(this).style("fill","rgb(133, 190, 236)");
+               console.log(d3.event);
+               console.log(d3.mouse(this));
+            }).on("mouseout",function(d){
+               d3.select(this).style("fill","steelblue");
+            });
+
+            bar.append("text")
+            .attr("x", function(d) { return (d*scaleFactor - 3); })
+            .attr("y", barHeight / 2)
+            .attr("dy", ".35em")
+            .text(function(d) { return d; })
+            .style("fill",function(d){
+               if(d % 2 == 0){
+                  return "black";
+               }
+               else{
+                  return "white";
+               }
+            });
+
+          
+         
+         
+            
+           /* var data = [10, 5, 12, 15, 20, 21, 25, 11, 2];
+            var max = data.reduce(function(a,b){return Math.max(a,b);});
+            var scaleFactor = 10,
+                height = max * scaleFactor,
+                barWidth = 20;
+
+              var graph = d3.select("body").append("svg")
+                .attr("width", barWidth * data.length).attr("height",height).style("border","none");
+
+             var bar = graph.selectAll("g")
+                .data(data)
+                .enter()
+                .append("g")
+                .attr("transform",function(d,i)
+                    {
+                        return "translate(" + i * barWidth + ",0)";
+                    });
+
+            bar.append("rect").attr("height",function(d)
+                {
+                    return d * scaleFactor;
+                })
+                .attr("width",barWidth - 1);
+
+            bar.append("text")
+            .attr("y", function(d) { return (d*scaleFactor - 3); })
+            .attr("x", barWidth / 2)
+            .attr("dx", ".35em")
+            .text(function(d) { return d; });*/
+
+            var lineData = [{ "x": 1, "y":5}, {"x":20, "y":20},
+                           { "x": 40, "y":10}, {"x":60, "y":40},
+                           { "x": 80, "y":5}, {"x":100, "y":60}
+                           ];
+
+               var lineFunction = d3.svg.line()
+                                          .x(function(d){return d.x;})
+                                          .y(function(d){return d.y;})
+                                          .interpolate("linear");
+
+               var svgContainer = d3.select("body").append("svg")
+                                                   .attr("width",200)
+                                                   .attr("height",200);
+
+               var lineGraph = svgContainer.append("path")
+                                             .attr("d",lineFunction)
+                                             .attr("stroke","blue")
+                                             .attr("stroke-width",3)
+                                             .attr("fill","none");
+            
+
+      </script>
+   </body>
+</html>
